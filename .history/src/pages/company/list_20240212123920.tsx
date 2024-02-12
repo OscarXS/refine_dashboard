@@ -4,7 +4,7 @@ import { Company } from '@/graphql/schema.types'
 import { CompaniesListQuery } from '@/graphql/types'
 import { currencyNumber } from '@/utilities'
 import { SearchOutlined } from '@ant-design/icons'
-import { CreateButton, DeleteButton, EditButton, FilterDropdown, List, useTable } from '@refinedev/antd'
+import { CreateButton, DeleteButton, EditButton, FilterDropdown, List, useEditableTable } from '@refinedev/antd'
 import { HttpError, getDefaultFilter, useGo } from '@refinedev/core'
 import { GetFieldsFromList } from '@refinedev/nestjs-query'
 import { Input, Space, Table } from 'antd'
@@ -52,7 +52,6 @@ export const CompanyList = ({ children }: React.PropsWithChildren) => {
       gqlQuery: COMPANIES_LIST_QUERY,
     },
   });
-  
   return (
     <div>
       <List

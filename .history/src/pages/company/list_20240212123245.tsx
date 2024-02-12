@@ -1,58 +1,53 @@
 import { CustomAvatar, Text } from '@/components'
 import { COMPANIES_LIST_QUERY } from '@/graphql/queries'
 import { Company } from '@/graphql/schema.types'
-import { CompaniesListQuery } from '@/graphql/types'
 import { currencyNumber } from '@/utilities'
 import { SearchOutlined } from '@ant-design/icons'
-import { CreateButton, DeleteButton, EditButton, FilterDropdown, List, useTable } from '@refinedev/antd'
-import { HttpError, getDefaultFilter, useGo } from '@refinedev/core'
-import { GetFieldsFromList } from '@refinedev/nestjs-query'
+import { CreateButton, DeleteButton, EditButton, FilterDropdown, List, useEditableTable } from '@refinedev/antd'
+import { getDefaultFilter, useGo } from '@refinedev/core'
 import { Input, Space, Table } from 'antd'
 import React from 'react'
 
 export const CompanyList = ({ children }: React.PropsWithChildren) => {
   const go = useGo();
-  
-  const { tableProps, filters } = useTable<
-    GetFieldsFromList<CompaniesListQuery>,
-    HttpError,
-    GetFieldsFromList<CompaniesListQuery>
-  >({
-    resource: "companies",
+  const { tableProps, filters } = useEditableTable<
+  Get>({
+    resource: 'companies',
     onSearch: (values) => {
-      return [
-        {
-          field: "name",
-          operator: "contains",
-          value: values.name,
-        },
-      ];
+      return(
+        [
+          {
+            field: 'name',
+            operator: 'contains',
+            value: values.name
+          }
+        ]
+      )
+    },
+    pagination: {
+      pageSize: 12
     },
     sorters: {
       initial: [
         {
-          field: "createdAt",
-          order: "desc",
-        },
-      ],
+          field: 'createdAt',
+          order: 'desc'
+        }
+      ]
     },
     filters: {
       initial: [
         {
-          field: "name",
-          operator: "contains",
-          value: undefined,
-        },
-      ],
-    },
-    pagination: {
-      pageSize: 12,
+          field: 'name',
+          operator: 'contains',
+          value: undefined
+        }
+      ]
     },
     meta: {
-      gqlQuery: COMPANIES_LIST_QUERY,
-    },
-  });
-  
+      gqlQuery: COMPANIES_LIST_QUERY
+    }
+  })
   return (
     <div>
       <List

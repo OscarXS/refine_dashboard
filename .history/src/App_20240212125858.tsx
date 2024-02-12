@@ -22,7 +22,6 @@ import { createClient } from "graphql-ws";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Layout } from "./components";
 import { resources } from "./config/resources";
-import { TasksListPage } from "./components/tasks";
 
 
 
@@ -72,7 +71,7 @@ function App() {
                 </Route>
                 
                 <Route path="/tasks">
-                    <Route element={<TasksListPage />} />
+                    <Route element={<TasksList />} />
                 </Route>
                 <Route path="*" element={<div> Not Found or You do not have permission.</div>}/>
               </Routes>

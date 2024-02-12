@@ -27,3 +27,4 @@ export {
 export * from "./custom-avatar";
 export * from "./layout";
 export * from "./text";
+export * from "./icon";

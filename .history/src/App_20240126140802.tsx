@@ -28,7 +28,7 @@ import { TasksList } from "./components/tasks/kanban/list";
 function App() {
   return (
     <BrowserRouter>
-      
+      <GitHubBanner />
       <RefineKbarProvider>
         <AntdApp>
           <DevtoolsProvider>
